@@ -26,7 +26,11 @@ def load_bottle_types(fp):
 
     x = []
     n = 0
-    for (mfg, name, typ) in reader:
+    for line in reader:
+        if line[0].startswith('#'):
+            continue
+        
+        (mfg, name, typ) = line
         n += 1
         db.add_bottle_type(mfg, name, typ)
 

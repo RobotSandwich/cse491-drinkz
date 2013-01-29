@@ -78,3 +78,15 @@ def test_bulk_load_bottle_types_1():
 
     assert db._check_bottle_type_exists('Johnnie Walker', 'Black Label')
     assert n == 1, n
+
+def test_get_liquor_inventory():
+    db._reset_db()
+
+    db.add_bottle_type('Johnnie Walker', 'Black Label', 'blended scotch')
+    db.add_to_inventory('Johnnie Walker', 'Black Label', '1000 ml')
+
+    x = []
+    for mfg, liquor in db.get_liquor_inventory():
+        x.append((mfg, liquor))
+
+    assert x == [('Johnnie Walker', 'Black Label')], x

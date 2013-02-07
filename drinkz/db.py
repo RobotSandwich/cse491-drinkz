@@ -6,6 +6,7 @@ Database functionality for drinkz information.
 _bottle_types_db = []
 _inventory_db = []
 
+
 def _reset_db():
     "A method only to be used during testing -- toss the existing db info."
     global _bottle_types_db, _inventory_db
@@ -50,8 +51,14 @@ def get_liquor_amount(mfg, liquor):
     for (m, l, amount) in _inventory_db:
         if mfg == m and liquor == l:
             amounts.append(amount)
-
-    return amounts[0]
+    amount = 0
+    for i in amounts:
+	line = i.split()
+	if line[1] == "ml":
+		amount += int(line[0])
+	else:
+		amount += int(line[0]) * 29.573
+    return amount
 
 def get_liquor_inventory():
     "Retrieve all liquor types in inventory, in tuple form: (mfg, liquor)."

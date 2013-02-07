@@ -84,13 +84,7 @@ def test_bulk_load_bottle_types_1():
     assert db._check_bottle_type_exists('Johnnie Walker', 'Black Label')
     assert n == 1, n
 
-def test_script_load_bottle_types_1():
-    scriptpath = 'bin/load-liquor-types'
-    module = imp.load_source('llt', scriptpath)
-    exit_code = module.main([scriptpath, 'test-data/data1.txt'])
 
-    assert exit_code == 0, 'non zero exit code %s' % exit_code
-    
 def test_get_liquor_inventory():
     db._reset_db()
 
@@ -102,7 +96,6 @@ def test_get_liquor_inventory():
         x.append((mfg, liquor))
 
     assert x == [('Johnnie Walker', 'Black Label')], x
-
 
 def test_ignore_commented_lines_booze():
     db._reset_db()
@@ -153,3 +146,4 @@ def test_script_load_liquor_inventory_1():
     exit_code = module.main([scriptpath, 'test-data/data1.txt'])
 
     assert exit_code == 0, 'non zero exit code %s' % exit_code
+

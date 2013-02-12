@@ -37,7 +37,7 @@ def load_bottle_types(fp):
 		except ValueError:
 			print "ValueError in load type"
 		except db.LiquorMissing:
-			print "Jesus H christ"
+			print "liquor missing in load type"
 		except IndexError:
 			print "Chmon LEE!"
 
@@ -66,6 +66,6 @@ def load_inventory(fp):
 					n += 1
 			return n
 		except ValueError:
-			print "Error fuck shit"
+			print "ValueError in Load inventory"
 		except db.LiquorMissing:
-			print "Jesus H christ"
+			print "liquor missign in load inventory"

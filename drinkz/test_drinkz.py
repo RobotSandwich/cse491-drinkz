@@ -105,7 +105,7 @@ def test_ignore_commented_lines_booze():
     db.add_bottle_type('Johnnie Walker', 'Black Label', 'blended scotch')
     db.add_bottle_type('Captain', 'Morgan', 'Rum')
 
-    data = open("/home/connor/Documents/cse491-drinkz/test-data/data1.txt", "r")  
+    data = open("test-data/data1.txt", "r")  
 
     stringdata = data.read()
     fp = StringIO(stringdata)
@@ -118,7 +118,7 @@ def test_ignore_commented_lines_booze():
 def test_ignore_commented_lines_type():
     db._reset_db()
 
-    data = open("/home/connor/Documents/cse491-drinkz/test-data/data1.txt", "r")  
+    data = open("test-data/data1.txt", "r")  
 
     stringdata = data.read()
     fp = StringIO(stringdata)
@@ -132,7 +132,7 @@ def test_get_liquor_amount_3():
 
     db.add_bottle_type('Johnnie Walker', 'Black Label', 'blended scotch')
     
-    data = open("/home/connor/Documents/cse491-drinkz/test-data/data2.txt", "r")  
+    data = open("test-data/data2.txt", "r")  
 
     stringdata = data.read()
 

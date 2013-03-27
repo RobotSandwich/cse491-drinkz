@@ -44,11 +44,4 @@ def test_form_recv():
     assert status == '200 OK'
 
 
-def test_recipes():
-	db._reset_db()
-
-	t = recipes.Recipe('Gin and Tonic', [('gin','4 oz')])
-	db.add_recipe(t)
-	r = recipes.Recipe('Pickle Back', [('whiskey','4 oz'),('pickle juice','2 oz')])
-	db.add_recipe(r)
-    
+  

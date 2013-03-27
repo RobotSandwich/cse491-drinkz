@@ -193,3 +193,27 @@ def test_check_type_exists():
 
 	assert typs.issubset(temp)
 	
+
+def test_save_load():
+	db._reset_db()
+
+	db.add_bottle_type('Johnnie Walker', 'Black Label', 'blended scotch')
+	db.add_to_inventory('Johnnie Walker', 'Black Label', '1000 ml')
+	r = Recipe('scotch on the rocks', [('blended scotch','4 oz')])
+
+	db.add_recipe(r)
+
+	r = Recipe('gin and tonic', [('gin','4 oz')])
+
+	db.add_recipe(r)
+
+
+	db.save_db("testsave")
+	db._reset_db()
+	db.load_db("testsave")
+
+	x = list(db.get_all_recipes())
+
+	assert len(x) == 2
+	assert db._check_bottle_type_exists('Johnnie Walker', 'Black Label')
+	assert db.check_inventory('Johnnie Walker', 'Black Label')

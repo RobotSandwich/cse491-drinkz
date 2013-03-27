@@ -58,7 +58,7 @@ def test_for_properly_named_grab_script():
 
 def test_for_properly_named_app():
     # HW 4.2
-    assert os.path.exists('./drinkz/app.py')
+    assert os.path.exists('./app.py')
 
 def test_for_properly_named_run_script():
     # HW 4.2(a)

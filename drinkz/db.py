@@ -2,6 +2,7 @@
 Database functionality for drinkz information.
 """
 import recipes
+from cPickle import dump, load
 
 # private singleton variables at module level
 _bottle_types_db = set([])
@@ -11,10 +12,27 @@ _recipes = set([])
 
 def _reset_db():
     "A method only to be used during testing -- toss the existing db info."
-    global _bottle_types_db, _inventory_db
+    global _bottle_types_db, _inventory_db, _recipes
     _bottle_types_db.clear()
     _inventory_db = {}
     _recipes.clear()
+
+def save_db(filename):
+    fp = open(filename, 'wb')
+
+    tosave = (_bottle_types_db, _inventory_db, _recipes)
+    dump(tosave, fp)
+
+    fp.close()
+
+def load_db(filename):
+    global _bottle_types_db, _inventory_db, _recipes
+    fp = open(filename, 'rb')
+
+    loaded = load(fp)
+    (_bottle_types_db, _inventory_db, _recipes) = loaded
+
+    fp.close()
 
 # exceptions in Python inherit from Exception and generally don't need to
 # override any methods.

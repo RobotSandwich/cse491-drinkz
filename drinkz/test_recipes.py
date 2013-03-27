@@ -10,10 +10,12 @@ class TestBasicRecipeStuff(unittest.TestCase):
         db._reset_db()
 
     def tearDown(self): # This is run once per test, after.
+
         pass
 
     def test_add_recipe_1(self):
         x = list(db.get_all_recipes())
+
         assert not x # should be no recipes
         
         r = recipes.Recipe('scotch on the rocks', [('blended scotch',
@@ -22,20 +24,23 @@ class TestBasicRecipeStuff(unittest.TestCase):
         db.add_recipe(r)
 
         x = list(db.get_all_recipes())
-        assert len(x) == 1 # should be only one recipe
+
+        assert len(x) == 1              # should be only one recipe
+
         assert r in x
 
     def test_add_recipe_2(self):
         r = recipes.Recipe('scotch on the rocks', [('blended scotch',
                                                    '4 oz')])
         db.add_recipe(r)
-        print "again"
+
         r2 = recipes.Recipe('scotch on the rocks', [('vodka', '4 oz')])
         try:
             db.add_recipe(r2)
             assert False, "this is a duplicate recipe and the add should fail"
         except db.DuplicateRecipeName:
             pass # success, we got an exception
+
 
     def test_get_recipe_1(self):
         r = recipes.Recipe('scotch on the rocks', [('blended scotch',
@@ -48,7 +53,9 @@ class TestBasicRecipeStuff(unittest.TestCase):
 
     def test_get_recipe_2(self):
         x = db.get_recipe('scotch on the rocks')
+
         assert not x, x # no such recipe
+
 
 class TestIngredients(object):
     def setUp(self):
@@ -91,7 +98,9 @@ class TestIngredients(object):
         assert len(missing) == 1
 
         assert missing[0][0] == 'orange juice', missing
-        assert round(missing[0][1], 1) == 177.4, missing # 6 oz in ml
+
+        assert round(missing[0][1], 1) == 177.4, missing   # 6 oz in ml
+
 
     def test_generic_replacement(self):
         r = recipes.Recipe('whiskey bath', [('blended scotch', '2 liter')])
@@ -112,9 +121,9 @@ class TestIngredients(object):
     def test_generic_replacement_no_mix(self):
         # the logic here is again a bit tricky -- we technically don't
         # need any blended scotch, if we were to combine Uncle Herman's
-        # moonshine with Johnnie Walker Black Label. But we don't want
+        # moonshine with Johnnie Walker Black Label.  But we don't want
         # to allow mixing of bottles, in general, because that's
-        # just icky. So we report back that we need at least half a liter
+        # just icky.  So we report back that we need at least half a liter
         # of blended scotch.
 
         r = recipes.Recipe('whiskey bath', [('blended scotch', '5.5 liter')])

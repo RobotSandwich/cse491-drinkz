@@ -1,0 +1,38 @@
+#! /usr/bin/env python
+import sys
+import _mypath
+import app
+from wsgiref.simple_server import make_server
+import urlparse
+import simplejson
+import os
+import make_html
+
+from drinkz.load_bulk_data import load_bottle_types
+
+def main(args):
+	#! /usr/bin/env python
+	os.chdir("..")
+
+	make_html.main()
+	import random, socket
+	#port = random.randint(8000, 9999)
+	port = 9789
+	capp = app.SimpleApp()
+    
+	httpd = make_server('', port, capp)
+	print "Serving on port %d..." % port
+	print "Try using a Web browser to go to http://%s:%d/" % \
+          (socket.getfqdn(), port)
+	httpd.serve_forever()
+
+	return 0
+    
+# run the 'main()' function if this script is run from the command line;
+# this will not execute if the file is imported.
+#
+# pass in command line arguments verbatim, as a list.
+
+if __name__ == '__main__':
+   exit_code = main(sys.argv)
+   sys.exit(exit_code)

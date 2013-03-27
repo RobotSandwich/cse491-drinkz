@@ -1,5 +1,6 @@
 import app
 import urllib
+import drinkz.db
 
 def test_index():
     environ = {}
@@ -41,4 +42,13 @@ def test_form_recv():
     assert text.find("First name: FOO; last name: BAR.") != -1, text
     assert ('Content-type', 'text/html') in headers
     assert status == '200 OK'
+
+
+def test_recipes():
+	db._reset_db()
+
+	t = recipes.Recipe('Gin and Tonic', [('gin','4 oz')])
+	db.add_recipe(t)
+	r = recipes.Recipe('Pickle Back', [('whiskey','4 oz'),('pickle juice','2 oz')])
+	db.add_recipe(r)
     

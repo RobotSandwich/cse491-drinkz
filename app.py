@@ -2,6 +2,7 @@
 from wsgiref.simple_server import make_server
 import urlparse
 import simplejson
+import drinkz.db
 
 dispatch = {
     '/' : 'index',
@@ -10,7 +11,10 @@ dispatch = {
     '/helmet' : 'helmet',
     '/form' : 'form',
     '/recv' : 'recv',
-    '/rpc'  : 'dispatch_rpc'
+    '/rpc'  : 'dispatch_rpc',
+	'/liquortypes'  : 'liquortypes',
+	'/inventory'  : 'inventory',
+	'/recipes'  : 'recipes'
 }
 
 html_headers = [('Content-type', 'text/html')]
@@ -33,32 +37,47 @@ class SimpleApp(object):
         return fn(environ, start_response)
             
     def index(self, environ, start_response):
-        data = """\
-Visit:
-<a href='content'>a file</a>,
-<a href='error'>an error</a>,
-<a href='helmet'>an image</a>,
-<a href='somethingelse'>something else</a>, or
-<a href='form'>a form...</a>
-<p>
-<img src='/helmet'>
-"""
+#        data = """\
+#Visit:
+#<a href='content'>a file</a>,
+#<a href='error'>an error</a>,
+#<a href='helmet'>an image</a>,
+#<a href='somethingelse'>something else</a>, or
+#<a href='form'>a form...</a>
+#<p>
+#<img src='/helmet'>
+#"""
+        data = open('index.html').read()
         start_response('200 OK', list(html_headers))
         return [data]
         
-    def somefile(self, environ, start_response):
+    def liquortypes(self, environ, start_response):
         content_type = 'text/html'
-        data = open('somefile.html').read()
+        data = open('html/liquor_types.html').read()
+
+        start_response('200 OK', list(html_headers))
+        return [data]
+
+    def recipes(self, environ, start_response):
+        content_type = 'text/html'
+        data = open('html/recipes.html').read()
+
+        start_response('200 OK', list(html_headers))
+        return [data]
+
+    def inventory(self, environ, start_response):
+        content_type = 'text/html'
+        data = open('html/inventory.html').read()
 
         start_response('200 OK', list(html_headers))
         return [data]
 
     def error(self, environ, start_response):
         status = "404 Not Found"
-        content_type = 'text/html'
-        data = "Couldn't find your stuff."
+        content_type = 'image/png'
+        data = open('notfound.png', 'rb').read()
        
-        start_response('200 OK', list(html_headers))
+        start_response('200 OK', [('Content-type', content_type)])
         return [data]
 
     def helmet(self, environ, start_response):
@@ -78,11 +97,17 @@ Visit:
         formdata = environ['QUERY_STRING']
         results = urlparse.parse_qs(formdata)
 
-        firstname = results['firstname'][0]
-        lastname = results['lastname'][0]
-
+        firstname = results['ozamount'][0]
         content_type = 'text/html'
-        data = "First name: %s; last name: %s.  <a href='./'>return to index</a>" % (firstname, lastname)
+
+        try:
+            firstname += " oz"
+            print firstname, "\n \n "
+            firstname = drinkz.db.convert_to_ml(firstname)
+            data = "Amount in ml: %s.  <a href='./'>return to index</a>" % (firstname)
+        except:
+            data = "unexpected input. <a href='./'>return to index</a>"
+
 
         start_response('200 OK', list(html_headers))
         return [data]
@@ -136,8 +161,7 @@ Visit:
 def form():
     return """
 <form action='recv'>
-Your first name? <input type='text' name='firstname' size'20'>
-Your last name? <input type='text' name='lastname' size='20'>
+Amount in oz <input type='text' name='ozamount' size'20'>
 <input type='submit'>
 </form>
 """

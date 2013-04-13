@@ -10,7 +10,7 @@ Module to load in bulk data from text files.
 
 import csv                              # Python csv package
 
-from . import db                        # import from local package
+from . import db, recipes                        # import from local package
 
 def load_bottle_types(fp):
     """
@@ -76,3 +76,33 @@ def parse_csv(fp):
             continue
 
         yield line
+
+def load_recipe(fp):
+    """
+Loads in data of the form "name/ingredient/amnt/ingredient2/amnt2.... from a CSV file.
+
+Takes a file pointer.
+
+Adds data to database.
+
+Returns number of records loaded.
+"""
+    reader = parse_csv(fp)
+
+    
+    n = 0
+    ingr = []
+    for line in reader:
+         if ((len(line) % 2) != 1):
+             raise ValueError
+         name = line[0]
+         i = 1
+         while i < len(line):
+             ingr.append( (line[i], line[i + 1]) )
+             i = i + 2
+         r = recipes.Recipe(name, ingr) 
+         db.add_recipe(r)
+         n = n + 1
+
+    return n
+

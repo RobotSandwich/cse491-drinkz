@@ -1,0 +1,2 @@
+just run WSGI.py for the server.
+Not sure if I did everything right for this step but either way the server is pingable and returns a string.

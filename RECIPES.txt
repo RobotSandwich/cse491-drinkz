@@ -1,0 +1,9 @@
+The way to bulk load recipes is very similar to the other data sets.
+
+    exit_code = module.main([scriptpath, 'test-data/bottle-types-data-1.txt','test-data/inventory-data-1.txt', 'test-data/recipe-data-1.txt'])
+
+This code is from test_drinkz.py. As you can see by this line of code you can now insert a third argument into the load-liquor-inventory script.
+
+the arguments for that script are [ bottle-types-data, inventory-data, recipe-data]
+
+

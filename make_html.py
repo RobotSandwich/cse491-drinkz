@@ -63,9 +63,9 @@ def main():
 	fp = open('html/liquor_types.html', 'w')
 	print >>fp, """<html>
 	<head>
-	<title>The Lush - Available Types of Liquor.</title>
+	<title>Liquor Types.</title>
 	<style type='text/css'>
-	h1 {color:red;}
+	h1 {color:black;}
 	body {
 	font-size: 14px;
 	}
@@ -74,18 +74,16 @@ def main():
 	</head>
 	<body>
 	"""
-	print >>fp, "<p><h1>Types of Liquor </h1> "
+	print >>fp, "<h1>Types of Liquor </h1> "
 	print >>fp, "<p><a href='/'>HomePage</a> "
-	print >>fp, "<p><a href='liquortypes'>Types of Liquor</a> "
+	print >>fp, "<a href='liquortypes'>Types of Liquor</a> "
 	print >>fp, "<a href='inventory'>Inventory of Booze</a> "
 	print >>fp, "<a href='recipes'>Recipe List</a> "
+	print >>fp, "<p><a href='form_add_type'>Add a New Type</a> "
 
 
-	print >>fp, "<b><p>Type<p></b>"
-	for mfg in db.get_liquor_inventory_types():
-		print>>fp, mfg
-		print >>fp, "<p>"
-	fp.close()
+	print >>fp, "<b><p>Liquor<p></b>"
+
 
 	###
 
@@ -95,9 +93,9 @@ def main():
 
 	print >>fp, """<html>
 	<head>
-	<title>The Lush - Current Inventory.</title>
+	<title>Inventory Page.</title>
 	<style type='text/css'>
-	h1 {color:red;}
+	h1 {color:black;}
 	body {
 	font-size: 14px;
 	}
@@ -106,16 +104,14 @@ def main():
 	</head>
 	<body>
 	"""
-	print >>fp, "<p><h1>Current Inventory </h1> "
+	print >>fp, "<h1>Current Inventory </h1> "
 	print >>fp, "<p><a href='/'>HomePage</a> "
-	print >>fp, "<p><a href='liquortypes'>Types of Liquor</a> "
+	print >>fp, "<a href='liquortypes'>Types of Liquor</a> "
 	print >>fp, "<a href='inventory'>Inventory of Booze</a> "
 	print >>fp, "<a href='recipes'>Recipe List</a> "
+	print >>fp, "<p><a href='form_add_inv'>Add a New Inventory</a> "
 
 	print >>fp, "<b><p>Name   :  Ingredients    :   Amount in ml<p></b>"
-	for mfg, liquor in db.get_liquor_inventory():
-		print>>fp, mfg, " : ", liquor, " : ", db.get_liquor_amount(mfg, liquor )
-		print >>fp, "<p>"
 
 	fp.close()
 
@@ -127,9 +123,9 @@ def main():
 
 	print >>fp, """<html>
 	<head>
-	<title>The Lush - Recipe List.</title>
+	<title>Recipe List.</title>
 	<style type='text/css'>
-	h1 {color:red;}
+	h1 {color:black;}
 	body {
 	font-size: 14px;
 	}
@@ -139,19 +135,14 @@ def main():
 	<body>
 	"""
 
-	print >>fp, "<p><h1>Recipes </h1> "
+	print >>fp, "<h1>Recipes </h1> "
 	print >>fp, "<p><a href='/'>HomePage</a> "
-	print >>fp, "<p><a href='liquortypes'>Types of Liquor</a> "
+	print >>fp, "<a href='liquortypes'>Types of Liquor</a> "
 	print >>fp, "<a href='inventory'>Inventory of Booze</a> "
 	print >>fp, "<a href='recipes'>Recipe List</a> "
-
-	x = list(db.get_all_recipes())
+	print >>fp, "<p><a href='form_add_recipe'>Add a New Recipe</a> "
 	print >>fp, "<b><p>Name   :  Ingredients<p></b>"
-	for i in x:
-		print >>fp, i.get_name(),":"
-		for z in i.get_ingredients():
-			print >>fp, z, "+"
-		print >>fp, "<p>"
+
 
 
 	fp.close()

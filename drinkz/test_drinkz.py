@@ -143,11 +143,11 @@ def test_get_liquor_amount_3():
     assert amount == 1088.7205, amount
 
 def test_script_load_liquor_inventory_1():
-    db.add_bottle_type('Johnnie Walker', 'Black Label', 'blended scotch')
-    db.add_bottle_type('Captain', 'Morgan', 'Rum')
+    #db.add_bottle_type('Johnnie Walker', 'Black Label', 'blended scotch')
+    #db.add_bottle_type('Captain', 'Morgan', 'Rum')
     scriptpath = 'bin/load-liquor-inventory'
     module = imp.load_source('llt', scriptpath)
-    exit_code = module.main([scriptpath, 'test-data/data1.txt'])
+    exit_code = module.main([scriptpath, 'test-data/bottle-types-data-1.txt','test-data/inventory-data-1.txt', 'test-data/recipe-data-1.txt'])
 
     assert exit_code == 0, 'non zero exit code %s' % exit_code
 
@@ -217,3 +217,23 @@ def test_save_load():
 	assert len(x) == 2
 	assert db._check_bottle_type_exists('Johnnie Walker', 'Black Label')
 	assert db.check_inventory('Johnnie Walker', 'Black Label')
+
+
+def test_can_make():
+	db._reset_db()
+
+	db.add_bottle_type('Johnnie Walker', 'Black Label', 'blended scotch')
+	db.add_to_inventory('Johnnie Walker', 'Black Label', '1000 ml')
+
+	db.add_bottle_type('Coca-Cola', 'cola', 'cola')
+	db.add_to_inventory('Coca-Cola', 'cola', '1000 ml')
+
+	r = Recipe('whiskey coke', [('blended scotch','4 oz'),('cola','2 oz')])
+
+	db.add_recipe(r)
+
+	r = Recipe('gin and tonic', [('gin','4 oz')])
+
+	db.add_recipe(r)
+
+	assert len(db.can_make()) == 1

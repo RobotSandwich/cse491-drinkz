@@ -112,7 +112,7 @@ def convert_to_ml(amount):
 def get_liquor_inventory():
     #"Retrieve all liquor types in inventory, in tuple form: (mfg, liquor)."
     for key in _inventory_db:
-        yield key[0], key[1]
+        yield (key[0], key[1])
 
 def get_liquor_inventory_types():
     #"Retrieve all liquor types in inventory"
@@ -125,7 +125,7 @@ def add_recipe(r):
 			raise DuplicateRecipeName(r.get_name())
 	_recipes.add(r)
 	
-
+#given a name return the recipe of the same name
 def get_recipe(name):
 	for i in _recipes:
 		if i.get_name() == name:
@@ -133,7 +133,19 @@ def get_recipe(name):
 	else:
 		return 0
 
+#generator returning all the recipes
 def get_all_recipes():
 	for i in _recipes:
 		yield i
+
+#returns a list of all the recipes we can make with the current inventory
+def can_make():
+	makeable = list()
+	for i in _recipes:
+		if (len(i.need_ingredients()) == 0):
+			makeable.append(i)
+	return makeable
+
+
+
 

@@ -52,9 +52,6 @@ def test_script_load_liquor_inventory():
     amount = db.get_liquor_amount('Johnnie Walker', 'Black Label')
     assert amount == 1234
 
-def test_for_properly_named_grab_script():
-    # HW 4.6.
-    assert os.path.exists('./grab-page')
 
 def test_for_properly_named_app():
     # HW 4.2

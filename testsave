@@ -1,0 +1,55 @@
+(c__builtin__
+set
+p1
+((lp2
+(S'Johnnie Walker'
+p3
+S'Black Label'
+p4
+S'blended scotch'
+p5
+tp6
+atRp7
+(dp8
+(g3
+g4
+tp9
+(lp10
+S'1000 ml'
+p11
+asg1
+((lp12
+(idrinkz.recipes
+Recipe
+p13
+(dp14
+S'_ingredients'
+p15
+g1
+((lp16
+(S'blended scotch'
+S'4 oz'
+tp17
+atRp18
+sS'_name'
+p19
+S'scotch on the rocks'
+p20
+sba(idrinkz.recipes
+Recipe
+p21
+(dp22
+g15
+g1
+((lp23
+(S'gin'
+p24
+S'4 oz'
+tp25
+atRp26
+sg19
+S'gin and tonic'
+p27
+sbatRp28
+tp29
+.

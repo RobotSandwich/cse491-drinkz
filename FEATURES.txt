@@ -1,0 +1,23 @@
+Summary:
+
+
+Stories
+
+J. Johnson wants to know the illest of recipes. So he checks out the drink database website and goes to the recipe page. He sees that the recipe on top is certainly the most illest of ill. A recipe so good his bros will bow down to him and he will suffocate under the sheer amount of girls all up on him. 
+Lo and behold though while J. Johnson is looking at the recipe list he notices a familiar name that still haunts him to this day. Ever since his 21st birthday party, or as his friends call it the spaghetti incident, were he miracously drank 13 of this devil of a drink. So as an act of revenge he votes that drink all the way to the bottom were it belongs. 
+
+Features
+    Create recipe ranking system
+	Allow users to rank recipes on the Recipes Page
+	Sort the recipes by their Rank on the Recipes Page
+	???
+	Eventually enable cookies and what not so an ip can only vote once
+	Other stuff
+
+Data storage functionality
+
+	The Rank of the recipe will be contained in two private variables in the recipe class. TotalScore and NumberofVotes
+	The Ranks itself will be an average of the TotalScore between 0-5
+
+
+

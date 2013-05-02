@@ -199,7 +199,7 @@ def test_save_load():
 
 	db.add_bottle_type('Johnnie Walker', 'Black Label', 'blended scotch')
 	db.add_to_inventory('Johnnie Walker', 'Black Label', '1000 ml')
-	r = Recipe('scotch on the rocks', [('blended scotch','4 oz')])
+	r = Recipe('scotch on the rocks', [('blended scotch','4 oz')], 5, 1)
 
 	db.add_recipe(r)
 
@@ -229,7 +229,7 @@ def test_can_make():
 	db.add_to_inventory('Coca-Cola', 'cola', '1000 ml')
 
 	r = Recipe('whiskey coke', [('blended scotch','4 oz'),('cola','2 oz')])
-
+	
 	db.add_recipe(r)
 
 	r = Recipe('gin and tonic', [('gin','4 oz')])

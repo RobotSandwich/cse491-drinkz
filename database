@@ -2,53 +2,38 @@
 set
 p1
 ((lp2
-(S'Johnnie Walker'
-S'Black Label'
-S'blended scotch'
-tp3
-a(S'Budweiser'
-S'Bud Light'
-S'Beer'
-tp4
-a(S'Coca-Cola'
-S'Coke'
-S'cola'
-tp5
-atRp6
-(dp7
-(S'Johnnie Walker'
-S'Black Label'
-tp8
-(lp9
-S'1234 ml'
-p10
-as(S'Coca-Cola'
-S'Coke'
-tp11
-(lp12
-S'2 gallon'
-p13
-asg1
-((lp14
 (idrinkz.recipes
 Recipe
-p15
-(dp16
-S'_ingredients'
-p17
+p3
+(dp4
+S'_votes'
+p5
+F2
+sS'_ingredients'
+p6
 g1
-((lp18
-(S'whiskey'
-S'3 oz'
-tp19
-a(S'Cola'
-S'2 oz'
-tp20
-atRp21
+((lp7
+(S'Rum'
+S' 4 oz'
+tp8
+a(S' Coke'
+S' 5 oz'
+tp9
+atRp10
+sS'_score'
+p11
+F9
 sS'_name'
-p22
-S'WhiskeyCoke'
-p23
-sbatRp24
-tp25
+p12
+S'Rum and Coke'
+p13
+sbatRp14
+g1
+((lp15
+S'ConnorRum and Coke'
+p16
+aS'Rum and Coke'
+p17
+atRp18
+tp19
 .

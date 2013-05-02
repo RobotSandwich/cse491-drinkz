@@ -1,10 +1,13 @@
 import db
+import math
 
 class Recipe:
 
-	def __init__(self, name, ingredients):
+	def __init__(self, name, ingredients, score=0, votes=0):
 		self._ingredients = set([])
 		self._name = name
+		self._score = 0.00
+		self._votes = 0.00
 		for ing in ingredients:
 			self._ingredients.add(ing)
 
@@ -14,6 +17,27 @@ class Recipe:
 	def get_ingredients(self):
 		for i in self._ingredients:
 			yield i
+
+	def get_str_ingredients(self):
+		string = ""
+		for i in self._ingredients:
+			string +=  i[0] + " " + i[1] + ","
+		return string
+
+	def get_score(self):
+		return self._score
+
+	def get_votes(self):
+		return self._votes
+
+	def get_average(self):
+		try:
+			return str(round((self._score / self._votes), 2))
+		except:
+			return '0';
+	def add_vote(self, score):
+		self._votes += 1
+		self._score += float(score)
 
 	def need_ingredients(self):
 		Available = []

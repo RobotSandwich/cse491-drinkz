@@ -23,33 +23,46 @@ asg1
 Recipe
 p13
 (dp14
-S'_ingredients'
+S'_votes'
 p15
+F0
+sS'_ingredients'
+p16
 g1
-((lp16
-(S'blended scotch'
+((lp17
+(g5
 S'4 oz'
-tp17
-atRp18
+p18
+tp19
+atRp20
+sS'_score'
+p21
+F0
 sS'_name'
-p19
+p22
 S'scotch on the rocks'
-p20
+p23
 sba(idrinkz.recipes
 Recipe
-p21
-(dp22
-g15
-g1
-((lp23
-(S'gin'
 p24
-S'4 oz'
-tp25
-atRp26
-sg19
-S'gin and tonic'
+(dp25
+g15
+F0
+sg16
+g1
+((lp26
+(S'gin'
 p27
-sbatRp28
-tp29
+g18
+tp28
+atRp29
+sg21
+F0
+sg22
+S'gin and tonic'
+p30
+sbatRp31
+g1
+((ltRp32
+tp33
 .

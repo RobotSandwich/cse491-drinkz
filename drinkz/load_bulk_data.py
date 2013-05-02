@@ -79,7 +79,7 @@ def parse_csv(fp):
 
 def load_recipe(fp):
     """
-Loads in data of the form "name/ingredient/amnt/ingredient2/amnt2.... from a CSV file.
+Loads in data of the form "name/score/votesingredient/amnt/ingredient2/amnt2.... from a CSV file.
 
 Takes a file pointer.
 
@@ -96,11 +96,13 @@ Returns number of records loaded.
          if ((len(line) % 2) != 1):
              raise ValueError
          name = line[0]
-         i = 1
+         score = line[1]
+         votes = line[2]
+         i = 3
          while i < len(line):
              ingr.append( (line[i], line[i + 1]) )
              i = i + 2
-         r = recipes.Recipe(name, ingr) 
+         r = recipes.Recipe(name, ingr,score, votes) 
          db.add_recipe(r)
          n = n + 1
 
